@@ -1,0 +1,32 @@
+# Ignorar directorios generados durante la construcción
+dist/
+coverage/
+
+# Ignorar archivos de configuración local
+.env
+
+# Ignorar archivos de dependencias
+node_modules/
+
+# Ignorar archivos de registro y caché
+logs/
+*.log
+*.log.*
+*.pid
+*.seed
+*.pid.lock
+lib-cov
+coverage/
+*.lcov
+
+# Ignorar archivos de compilación
+.sass-cache/
+*.sass-cache/
+.idea/
+.vscode/
+*.sublime-project
+*.sublime-workspace
+
+# Ignorar archivos de configuración de editor
+*.swp
+.DS_Store
