@@ -28,4 +28,5 @@ export declare class ServicesDTO {
     title: string;
     description: string;
     idBranch?: ObjectId;
+    fkBranchId?: ObjectId;
 }

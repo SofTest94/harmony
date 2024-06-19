@@ -29,6 +29,7 @@ export declare class Services {
     title: string;
     description: string;
     idBranch?: ObjectId;
+    fkBranchId: ObjectId;
 }
 export declare const ServiceSchema: import("mongoose").Schema<Services, import("mongoose").Model<Services, any, any, any, Document<unknown, any, Services> & Services & {
     _id: import("mongoose").Types.ObjectId;

@@ -22,6 +22,8 @@ const service_module_1 = require("./modules/services/service.module");
 const branches_module_1 = require("./modules/branches/branches.module");
 const roles_module_1 = require("./modules/roles/roles.module");
 const permissions_module_1 = require("./modules/permissions/permissions.module");
+const questions_module_1 = require("./modules/questions/questions.module");
+const videos_module_1 = require("./modules/videos/videos.module");
 let AppModule = class AppModule {
 };
 exports.AppModule = AppModule;
@@ -40,6 +42,8 @@ exports.AppModule = AppModule = __decorate([
             branches_module_1.BranchesModule,
             roles_module_1.RolesModule,
             permissions_module_1.PermissionsModule,
+            questions_module_1.QuestionsModule,
+            videos_module_1.VideosModule
         ],
         controllers: [app_controller_1.AppController],
         providers: [app_service_1.AppService],

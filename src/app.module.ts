@@ -17,6 +17,8 @@ import { ServicesModule } from './modules/services/service.module';
 import { BranchesModule } from './modules/branches/branches.module';
 import { RolesModule } from './modules/roles/roles.module';
 import { PermissionsModule } from './modules/permissions/permissions.module';
+import { QuestionsModule } from './modules/questions/questions.module';
+import { VideosModule } from './modules/videos/videos.module';
 
 @Module({
   imports: [
@@ -32,6 +34,9 @@ import { PermissionsModule } from './modules/permissions/permissions.module';
     BranchesModule,
     RolesModule,
     PermissionsModule,
+    QuestionsModule,
+    VideosModule
+    
   ],
   controllers: [AppController],
   providers: [AppService],

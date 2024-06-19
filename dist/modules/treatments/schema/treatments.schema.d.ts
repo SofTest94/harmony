@@ -29,6 +29,7 @@ export declare class Treatments {
     title: string;
     description: string;
     idBranch?: ObjectId;
+    fkBranchId: ObjectId;
 }
 export declare const TreatmentSchema: import("mongoose").Schema<Treatments, import("mongoose").Model<Treatments, any, any, any, Document<unknown, any, Treatments> & Treatments & {
     _id: import("mongoose").Types.ObjectId;

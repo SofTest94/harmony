@@ -22,12 +22,13 @@
 /// <reference types="mongoose/types/validation" />
 /// <reference types="mongoose/types/virtuals" />
 /// <reference types="mongoose/types/inferschematype" />
-import { Document } from 'mongoose';
+import { Document, ObjectId } from 'mongoose';
 export type PartnersDocument = Partners & Document;
 export declare class Partners {
     img?: string;
     title: string;
     description: string;
+    fkBranchId: ObjectId;
 }
 export declare const PartnerSchema: import("mongoose").Schema<Partners, import("mongoose").Model<Partners, any, any, any, Document<unknown, any, Partners> & Partners & {
     _id: import("mongoose").Types.ObjectId;

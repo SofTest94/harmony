@@ -31,6 +31,10 @@ __decorate([
     (0, mongoose_1.Prop)({ type: mongoose_2.SchemaTypes.ObjectId, default: '662741f6ac5568ad604b8b48' }),
     __metadata("design:type", Object)
 ], Services.prototype, "idBranch", void 0);
+__decorate([
+    (0, mongoose_1.Prop)({ type: mongoose_2.SchemaTypes.ObjectId, default: undefined }),
+    __metadata("design:type", Object)
+], Services.prototype, "fkBranchId", void 0);
 exports.Services = Services = __decorate([
     (0, mongoose_1.Schema)({ timestamps: true })
 ], Services);
