@@ -5,4 +5,5 @@ export class VideosDTO {
   description: string;
   urlVideo: string;
   fkBranchId?: ObjectId;
+  other?: string;
 }

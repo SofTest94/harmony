@@ -15,6 +15,9 @@ export class Videos {
 
   @Prop({ type: SchemaTypes.ObjectId, default: undefined }) // dejar por default el admin
   fkBranchId: ObjectId;
+
+  @Prop({ default: '' }) // dejar por default el admin
+  other: string;
 }
 
 export const VideosSchema = SchemaFactory.createForClass(Videos);
