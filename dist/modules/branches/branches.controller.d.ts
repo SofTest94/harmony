@@ -31,6 +31,9 @@ export declare class BranchesController {
     getAll(): Promise<(import("mongoose").Document<unknown, {}, import("./schema/branches.schema").BranchesDocument> & import("./schema/branches.schema").Branches & import("mongoose").Document<any, any, any> & {
         _id: import("mongoose").Types.ObjectId;
     })[]>;
+    getAllFromLocation(branchId: string): Promise<(import("mongoose").Document<unknown, {}, import("./schema/branches.schema").BranchesDocument> & import("./schema/branches.schema").Branches & import("mongoose").Document<any, any, any> & {
+        _id: import("mongoose").Types.ObjectId;
+    })[]>;
     create(branches: BranchesDTO): Promise<{
         status: number;
         message: string;

@@ -26,11 +26,11 @@ import { Document } from 'mongoose';
 export type BranchesDocument = Branches & Document;
 export declare class Branches {
     name: string;
+    number: string;
+    city: string;
+    municipality: string;
     state: string;
-    fullAddress: string;
-    references: string;
     phone: string;
-    photo: string;
 }
 export declare const BranchesSchema: import("mongoose").Schema<Branches, import("mongoose").Model<Branches, any, any, any, Document<unknown, any, Branches> & Branches & {
     _id: import("mongoose").Types.ObjectId;

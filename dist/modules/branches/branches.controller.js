@@ -23,6 +23,9 @@ let BranchesController = class BranchesController {
     getAll() {
         return this.branchService.getAll();
     }
+    getAllFromLocation(branchId) {
+        return this.branchService.getAll();
+    }
     create(branches) {
         return this.branchService.create(branches);
     }
@@ -40,6 +43,13 @@ __decorate([
     __metadata("design:paramtypes", []),
     __metadata("design:returntype", void 0)
 ], BranchesController.prototype, "getAll", null);
+__decorate([
+    (0, common_1.Get)(':branchId'),
+    __param(0, (0, common_1.Param)('branchId')),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", void 0)
+], BranchesController.prototype, "getAllFromLocation", null);
 __decorate([
     (0, common_1.Post)(),
     __param(0, (0, common_1.Body)()),
