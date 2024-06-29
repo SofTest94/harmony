@@ -13,7 +13,7 @@ export class Appointments {
   @Prop({ type: SchemaTypes.ObjectId, default: undefined })
   idService?: ObjectId; // 662b108dd25ce70194ea5974
   @Prop()
-  date: string;         // 1 de julio
+  date: Date;         // 1 de julio
   @Prop()
   hour:string;          // 4:30 pm
   @Prop()
