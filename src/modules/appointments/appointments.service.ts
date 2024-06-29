@@ -15,6 +15,44 @@ export class AppointmentService {
   async getAll() {
     return await this.appointmentModule.find().exec();
   }
+  async getAllAppointmentsWithServices() {
+    try {
+      const appointmentsWithServices = await this.appointmentModule.aggregate([
+        {
+          $lookup: {
+            from: 'services', // Nombre de la colección de servicios en tu base de datos
+            localField: 'idService',
+            foreignField: '_id',
+            as: 'serviceInfo'
+          }
+        },
+        {
+          $unwind: '$serviceInfo' // Deshacer el array resultante del $lookup
+        },
+        {
+          $project: {
+            _id: 1,
+            telephone: 1,
+            date: 1,
+            hour: 1,
+            status: 1,
+            service: '$serviceInfo.title', // Cambiar para incluir el nombre del servicio como 'service'
+          }
+        }
+      ]).exec();
+  
+      return appointmentsWithServices;
+    } catch (error) {
+      return [
+        {
+          status: 500,
+          message: 'Error: ' + error.message,
+          items: [],
+        },
+      ];
+    }
+  }
+  
 
   async create(appointments: AppointmentsDTO) {
     try {

@@ -9,7 +9,7 @@ export class AppointmentController {
 
   @Get()
   getAll() {
-    return this.AppointmentService.getAll();
+    return this.AppointmentService.getAllAppointmentsWithServices();
   }
 
   @Post()
