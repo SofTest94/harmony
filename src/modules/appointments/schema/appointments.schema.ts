@@ -9,7 +9,7 @@ export class Appointments {
   @Prop()
   fullName: string;     // jorge montiel salguero
   @Prop()
-  Telephone: string;    // 7711129510
+  telephone: string;    // 7711129510
   @Prop({ type: SchemaTypes.ObjectId, default: undefined })
   idService?: ObjectId; // 662b108dd25ce70194ea5974
   @Prop()
