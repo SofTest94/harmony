@@ -1,23 +1,21 @@
-# Ignorar directorios generados durante la construcción
-# dist/    <-- Comenta o elimina esta línea
+# dependencies
+/node_modules
+/dist
 
-# Otros contenidos de .gitignore
-coverage/
-.env
-node_modules/
-logs/
-*.log
-*.log.*
-*.pid
-*.seed
-*.pid.lock
-lib-cov
-*.lcov
-.sass-cache/
-*.sass-cache/
-.idea/
-.vscode/
-*.sublime-project
-*.sublime-workspace
-*.swp
+# testing
+/coverage
+
+# production
+/build
+
+# misc
 .DS_Store
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# Logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
