@@ -32,6 +32,7 @@ export class AppointmentService {
         {
           $project: {
             _id: 1,
+            fullName: 1,
             telephone: 1,
             date: 1,
             hour: 1,
