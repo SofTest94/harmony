@@ -15,44 +15,101 @@ export class AppointmentService {
   async getAll() {
     return await this.appointmentModule.find().exec();
   }
-  async getAllAppointmentsWithServices() {
-    try {
-      const appointmentsWithServices = await this.appointmentModule.aggregate([
-        {
-          $lookup: {
-            from: 'services', // Nombre de la colección de servicios en tu base de datos
-            localField: 'idService',
-            foreignField: '_id',
-            as: 'serviceInfo'
-          }
-        },
-        {
-          $unwind: '$serviceInfo' // Deshacer el array resultante del $lookup
-        },
-        {
-          $project: {
-            _id: 1,
-            fullName: 1,
-            telephone: 1,
-            date: 1,
-            hour: 1,
-            status: 1,
-            service: '$serviceInfo.title', // Cambiar para incluir el nombre del servicio como 'service'
-          }
+   convertirFecha(fechaISO) {
+    // Crear un objeto de fecha a partir de la cadena ISO 8601
+    const fecha = new Date(fechaISO);
+
+    // Obtener día, mes y año
+    const dia = fecha.getUTCDate();
+    const mes = fecha.getUTCMonth() + 1; // Los meses van de 0 a 11, por lo que sumamos 1
+    const año = fecha.getUTCFullYear();
+
+    // Formatear para obtener DD/MM/YYYY
+    const fechaFormateada = `${dia.toString().padStart(2, '0')}/${mes.toString().padStart(2, '0')}/${año}`;
+
+    return fechaFormateada;
+}
+async getAllAppointmentsWithServices() {
+  try {
+    const appointmentsWithServices = await this.appointmentModule.aggregate([
+      {
+        $lookup: {
+          from: 'services',
+          localField: 'idService',
+          foreignField: '_id',
+          as: 'serviceInfo'
         }
-      ]).exec();
-  
-      return appointmentsWithServices;
-    } catch (error) {
-      return [
-        {
-          status: 500,
-          message: 'Error: ' + error.message,
-          items: [],
-        },
-      ];
-    }
+      },
+      {
+        $unwind: '$serviceInfo'
+      },
+      {
+        $project: {
+          _id: 1,
+          fullName: 1,
+          telephone: 1,
+          date: {
+            $dateToString: {
+              format: '%d/%m/%Y', // Formato de fecha deseado
+              date: '$date' // Suponiendo que 'date' es el nombre del campo de fecha en tus datos
+            }
+          },
+          hour: 1,
+          status: 1,
+          service: '$serviceInfo.title',
+        }
+      }
+    ]).exec();
+
+    return appointmentsWithServices;
+  } catch (error) {
+    return [
+      {
+        status: 500,
+        message: 'Error: ' + error.message,
+        items: [],
+      },
+    ];
   }
+}
+  // async getAllAppointmentsWithServices() {
+  //   try {
+  //     const appointmentsWithServices = await this.appointmentModule.aggregate([
+  //       {
+  //         $lookup: {
+  //           from: 'services', // Nombre de la colección de servicios en tu base de datos
+  //           localField: 'idService',
+  //           foreignField: '_id',
+  //           as: 'serviceInfo'
+  //         }
+  //       },
+  //       {
+  //         $unwind: '$serviceInfo' // Deshacer el array resultante del $lookup
+  //       },
+  //       {
+  //         $project: {
+  //           _id: 1,
+  //           fullName: 1,
+  //           telephone: 1,
+  //           date: 1,
+  //           hour: 1,
+  //           status: 1,
+  //           service: '$serviceInfo.title', // Cambiar para incluir el nombre del servicio como 'service'
+  //         }
+  //       }
+  //     ]).exec();
+  
+  //     return appointmentsWithServices;
+  //   } catch (error) {
+  //     return [
+  //       {
+  //         status: 500,
+  //         message: 'Error: ' + error.message,
+  //         items: [],
+  //       },
+  //     ];
+  //   }
+  // }
   
 
   async create(appointments: AppointmentsDTO) {
