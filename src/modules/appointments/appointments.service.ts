@@ -69,7 +69,7 @@ async getAllAppointmentsWithServices() {
           telephone: 1,
           date: {
             $dateToString: {
-              format: '%Y/%m/%d', // Formato de fecha deseado
+              format: '%Y-%m-%d', // Formato de fecha deseado
               date: '$date' // Suponiendo que 'date' es el nombre del campo de fecha en tus datos
             }
           },
