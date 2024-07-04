@@ -29,8 +29,27 @@ export class AppointmentService {
 
     return fechaFormateada;
 }
+
+ convertDate(inputDate) {
+  // Paso 1: Parsear la fecha de entrada en un objeto Date
+  const input = new Date(inputDate);
+
+  // Paso 2: Crear una nueva fecha con el desplazamiento necesario
+  const adjustedDate = new Date(
+    input.getFullYear(),
+    input.getMonth() - 1,
+    input.getDate()
+  );
+
+  // Paso 3: Formatear la fecha en el formato 'YYYY-MM-DD'
+  const formattedDate = adjustedDate.toISOString().split('T')[0];
+
+  return formattedDate;
+}
+
 async getAllAppointmentsWithServices() {
   try {
+    ;
     const appointmentsWithServices = await this.appointmentModule.aggregate([
       {
         $lookup: {
@@ -50,7 +69,7 @@ async getAllAppointmentsWithServices() {
           telephone: 1,
           date: {
             $dateToString: {
-              format: '%d/%m/%Y', // Formato de fecha deseado
+              format: '%Y/%m/%d', // Formato de fecha deseado
               date: '$date' // Suponiendo que 'date' es el nombre del campo de fecha en tus datos
             }
           },
