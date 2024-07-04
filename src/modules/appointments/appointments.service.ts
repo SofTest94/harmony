@@ -76,6 +76,7 @@ async getAllAppointmentsWithServices() {
           hour: 1,
           status: 1,
           service: '$serviceInfo.title',
+          idService: '$serviceInfo._id',
         }
       }
     ]).exec();
