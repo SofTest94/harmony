@@ -1,8 +1,8 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
-import mongoose, { Model } from 'mongoose';
+import mongoose, { Model, SchemaTypes } from 'mongoose';
 import { Users, UsersDocument } from './schema/users.schema';
-import { UsersDTO } from './dto/users.dto';
+import { UserLoginDTO, UsersDTO } from './dto/users.dto';
 import { Specialties, SpecialtiesDocument } from '../specialties/schema/specialties.schema';
 import { Roles, RolesDocument } from '../roles/schema/roles.schema';
 
@@ -150,8 +150,9 @@ export class UserService {
     }
   }
 
-  async findByUsernameAndPassword(username: string, password: string): Promise<UsersDTO | null> {
-    const user = await this.userModule.findOne({ username, password }).exec();
+  async findByUsernameAndPassword(username: string, password: string): Promise<any | null> {
+    const user = await this.userModule.findOne({ username, password }).select("fullName photo username").lean();
+    console.log({user})
     return user;
   }
 }
