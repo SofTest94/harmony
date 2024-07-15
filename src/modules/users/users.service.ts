@@ -4,6 +4,7 @@ import mongoose, { Model } from 'mongoose';
 import { Users, UsersDocument } from './schema/users.schema';
 import { UsersDTO } from './dto/users.dto';
 import { Specialties, SpecialtiesDocument } from '../specialties/schema/specialties.schema';
+import { Roles, RolesDocument } from '../roles/schema/roles.schema';
 
 @Injectable()
 export class UserService {
@@ -11,7 +12,9 @@ export class UserService {
     @InjectModel(Users.name)
     private userModule: Model<UsersDocument>,
     @InjectModel(Specialties.name)
-    private specialtyModule: Model<SpecialtiesDocument>
+    private specialtyModule: Model<SpecialtiesDocument>,
+    @InjectModel(Roles.name)
+    private rolModule: Model<RolesDocument>
   ) {}
 
   async getByIdBranch(auxIdBranch: string) {
@@ -145,5 +148,10 @@ export class UserService {
         },
       ];
     }
+  }
+
+  async findByUsernameAndPassword(username: string, password: string): Promise<UsersDTO | null> {
+    const user = await this.userModule.findOne({ username, password }).exec();
+    return user;
   }
 }
